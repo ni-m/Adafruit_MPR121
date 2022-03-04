@@ -49,18 +49,9 @@ Adafruit_MPR121::Adafruit_MPR121() {}
  *            release detection threshold value
  *  @returns  true on success, false otherwise
  */
-bool Adafruit_MPR121::begin(uint8_t i2caddr, TwoWire *theWire,
+bool Adafruit_MPR121::begin(Adafruit_I2CDevice* i2c_dev, TwoWire *theWire,
                             uint8_t touchThreshold, uint8_t releaseThreshold) {
-
-  if (i2c_dev) {
-    delete i2c_dev;
-  }
-  i2c_dev = new Adafruit_I2CDevice(i2caddr, theWire);
-
-  if (!i2c_dev->begin()) {
-    return false;
-  }
-
+  this->i2c_dev = i2c_dev;
   // soft reset
   writeRegister(MPR121_SOFTRESET, 0x63);
   delay(1);

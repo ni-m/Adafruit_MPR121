@@ -86,7 +86,7 @@ public:
   // Hardware I2C
   Adafruit_MPR121();
 
-  bool begin(uint8_t i2caddr = MPR121_I2CADDR_DEFAULT, TwoWire *theWire = &Wire,
+  bool begin(Adafruit_I2CDevice* i2c_dev, TwoWire *theWire = &Wire,
              uint8_t touchThreshold = MPR121_TOUCH_THRESHOLD_DEFAULT,
              uint8_t releaseThreshold = MPR121_RELEASE_THRESHOLD_DEFAULT);
 
